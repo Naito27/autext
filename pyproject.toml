@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autext"
+version = "0.2.0"
+description = "Depth-optimal parity-check circuits for qLDPC codes by disassembling their construction"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+# CP-SAT: the exact fixed-depth feasibility solver and the allocation models.
+solve = ["ortools>=9.7"]
+# The orientation-validity check script (autext/qt/orient.py).
+analysis = ["networkx>=3.0"]
+# Independent stabilizer-circuit validation of a lifted schedule.
+stim = ["stim>=1.13"]
+# Circuit-level distance (autext/circ): stim detector error models and BP-OSD.
+circ = ["stim>=1.13", "ldpc>=2.0"]
+# Everything needed to reproduce the results and run the test suite.
+all = ["ortools>=9.7", "networkx>=3.0", "stim>=1.13", "ldpc>=2.0", "pytest>=7"]
+
+[tool.setuptools.packages.find]
+include = ["autext*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
