@@ -39,8 +39,8 @@ from autext.qt import qt, build, core, simple
 
 Q = qt.QT('[6,3,3]', '[6,3,3]')                 # base code with pi = id (assumption [A])
 # Q = qt.QT.random('[6,3,3]', '[6,3,3]', rng)   # or a random coupled relabelling
-rho   = qt.weight_class_halving(Q.H)            # split the rows in two
-sigma = qt.weight_class_halving(Q.Hp)           # split the columns in two
+rho   = qt.weight_class_halving(Q.H)            # row halving
+sigma = qt.weight_class_halving(Q.Hp)           # column halving
 inst  = build.from_qt(Q, rho, sigma)            # base Tanner graph and sandwich groups
 T, sch = simple.solve(inst)                     # the layer sweep of the paper's Box 1
 core.verify(inst, sch, T)                       # raises if the schedule is invalid
